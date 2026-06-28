@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器 Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #333; margin-bottom: 20px; }
+        #counter {
+            font-size: 80px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .btn-group { display: flex; gap: 10px; justify-content: center; }
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        button:active { transform: translateY(0); }
+        .btn-inc { background: #667eea; color: white; }
+        .btn-dec { background: #f093fb; color: white; }
+        .btn-reset { background: #e0e0e0; color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 计数器</h1>
+        <div id="counter">0</div>
+        <div class="btn-group">
+            <button class="btn-dec" onclick="changeCount(-1)">− 减少</button>
+            <button class="btn-reset" onclick="resetCount()">🔄 重置</button>
+            <button class="btn-inc" onclick="changeCount(1)">+ 增加</button>
+        </div>
+    </div>
+    <script>
+        let count = 0;
+        const counterEl = document.getElementById('counter');
+
+        function changeCount(delta) {
+            count += delta;
+            updateDisplay();
+        }
+
+        function resetCount() {
+            count = 0;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            counterEl.textContent = count;
+            counterEl.style.transform = 'scale(1.1)';
+            setTimeout(() => counterEl.style.transform = 'scale(1)', 200);
+        }
+    </script>
+</body>
+</html>
